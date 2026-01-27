@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Cloud Render Lab: Next.js Performance Research
 
-## Getting Started
+A scientific comparison of rendering strategies (SSG, SSR, ISR) deployed on Google Cloud Platform (Cloud Run). This project serves as the practical implementation for a Master's research study on performance and SEO optimization in serverless architectures.
 
-First, run the development server:
+Research Objectives
 
-```bash
+Performance Benchmarking: Quantify the latency differences (TTFB, LCP) between Static Site Generation, Server-Side Rendering, and Incremental Static Regeneration.
+
+Cold Start Analysis: Measure the impact of serverless container "cold starts" on user experience in Google Cloud Run.
+
+AI Latency Integration: Analyze how external API calls (Gemini AI) affect response times across different rendering modes.
+
+SEO Evaluation: Verify search engine crawlability and metadata integrity for dynamic vs. static routes.
+
+Tech Stack
+
+Framework: Next.js 15+ (App Router)
+
+Language: TypeScript
+
+Styling: Tailwind CSS
+
+Infrastructure: Google Cloud Run, Cloud Build, Artifact Registry
+
+AI: Google Gemini API
+
+Testing: k6 (Load Testing), Lighthouse (SEO/Performance)
+
+📁 Project Structure
+
+/src/app/page.tsx - The Research Hub (Dashboard)
+
+/src/app/ssg/ - Page 1: Static Site Generation Experiment
+
+/src/app/ssr/ - Page 2: Server-Side Rendering Experiment
+
+/src/app/isr/ - Page 3: Incremental Static Regeneration Experiment
+
+/src/app/api/ - Serverless API routes for Gemini AI and Metrics logging
+
+Getting Started
+
+Prerequisites
+
+Node.js v22+
+
+Google Cloud SDK (gcloud)
+
+Gemini API Key (stored in .env.local)
+
+Installation
+
+npm install
+
+
+Development
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Scientific Metrics Tracked
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+TTFB: Time to First Byte (Server Response)
 
-## Learn More
+LCP: Largest Contentful Paint (Visual Load)
 
-To learn more about Next.js, take a look at the following resources:
+Cold Start Time: Container initialization delay (ms)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+API Latency: Gemini AI response duration

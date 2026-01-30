@@ -50,12 +50,39 @@ export const mockProducts: Product[] = [
         description: "Low-latency networking hub optimized for edge computing and rapid sync operations.",
         latencyTarget: "8ms",
         lastUpdated: new Date().toLocaleTimeString()
+    },
+    {
+        id: "5",
+        name: "Vertex AI Accelerator",
+        category: "AI Interface",
+        price: "$950.00",
+        description: "Specialized hardware for accelerating machine learning inference at the edge.",
+        latencyTarget: "12ms",
+        lastUpdated: new Date().toLocaleTimeString()
+    },
+    {
+        id: "6",
+        name: "Nexus Security Gateway",
+        category: "Networking",
+        price: "$450.00",
+        description: "Zero-trust security gateway with integrated hardware-level encryption.",
+        latencyTarget: "5ms",
+        lastUpdated: new Date().toLocaleTimeString()
+    },
+    {
+        id: "7",
+        name: "Titan Storage Array",
+        category: "Infrastructure",
+        price: "$2,100.00",
+        description: "Ultra-fast NVMe storage array optimized for massive parallel read/write operations.",
+        latencyTarget: "3ms",
+        lastUpdated: new Date().toLocaleTimeString()
     }
+    // ... Add more items to reach 20 as you progress
 ];
 
-// Simulate an API delay for our research measurements
 export async function getProducts() {
-    // Artificial delay to simulate real network conditions
+    // Artificial delay to simulate real network conditions for benchmarks
     await new Promise((resolve) => setTimeout(resolve, 500));
     return mockProducts;
 }

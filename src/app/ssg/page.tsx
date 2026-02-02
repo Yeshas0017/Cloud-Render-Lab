@@ -21,13 +21,13 @@ import {
  * the simulation runs without dependency resolution errors.
  */
 const mockProducts = [
-    { id: "1", name: "Quantum Processor X1", category: "Core Unit", price: "$499.00", description: "High-performance serverless chip designed for rapid data processing.", latencyTarget: "0.2ms", lastUpdated: "08:00:00 AM" },
-    { id: "2", name: "Neural Link Module", category: "AI Interface", price: "$850.00", description: "Advanced interface for real-time AI processing and neural network integration.", latencyTarget: "14ms", lastUpdated: "08:00:00 AM" },
-    { id: "3", name: "Cloud Core G2", category: "Infrastructure", price: "$1,200.00", description: "Enterprise-grade cloud infrastructure component for scalable serverless deployments.", latencyTarget: "4ms", lastUpdated: "08:00:00 AM" },
-    { id: "4", name: "Edge Sync Hub", category: "Networking", price: "$320.00", description: "Low-latency networking hub optimized for edge computing.", latencyTarget: "8ms", lastUpdated: "08:00:00 AM" },
-    { id: "5", name: "Vertex AI Accelerator", category: "AI Interface", price: "$950.00", description: "Specialized hardware for accelerating machine learning inference at the edge.", latencyTarget: "12ms", lastUpdated: "08:00:00 AM" },
-    { id: "6", name: "Nexus Security Gateway", category: "Networking", price: "$450.00", description: "Zero-trust security gateway with integrated hardware-level encryption.", latencyTarget: "5ms", lastUpdated: "08:00:00 AM" },
-    { id: "7", name: "Titan Storage Array", category: "Infrastructure", price: "$2,100.00", description: "Ultra-fast NVMe storage array optimized for massive parallel operations.", latencyTarget: "3ms", lastUpdated: "08:00:00 AM" }
+    { id: "1", name: "Quantum Processor X1", category: "Core Unit", price: "€499.00", description: "High-performance serverless chip designed for rapid data processing.", latencyTarget: "0.2ms", lastUpdated: "08:00:00 AM" },
+    { id: "2", name: "Neural Link Module", category: "AI Interface", price: "€850.00", description: "Advanced interface for real-time AI processing and neural network integration.", latencyTarget: "14ms", lastUpdated: "08:00:00 AM" },
+    { id: "3", name: "Cloud Core G2", category: "Infrastructure", price: "€1,200.00", description: "Enterprise-grade cloud infrastructure component for scalable serverless deployments.", latencyTarget: "4ms", lastUpdated: "08:00:00 AM" },
+    { id: "4", name: "Edge Sync Hub", category: "Networking", price: "€320.00", description: "Low-latency networking hub optimized for edge computing.", latencyTarget: "8ms", lastUpdated: "08:00:00 AM" },
+    { id: "5", name: "Vertex AI Accelerator", category: "AI Interface", price: "€950.00", description: "Specialized hardware for accelerating machine learning inference at the edge.", latencyTarget: "12ms", lastUpdated: "08:00:00 AM" },
+    { id: "6", name: "Nexus Security Gateway", category: "Networking", price: "€450.00", description: "Zero-trust security gateway with integrated hardware-level encryption.", latencyTarget: "5ms", lastUpdated: "08:00:00 AM" },
+    { id: "7", name: "Titan Storage Array", category: "Infrastructure", price: "€2,100.00", description: "Ultra-fast NVMe storage array optimized for massive parallel operations.", latencyTarget: "3ms", lastUpdated: "08:00:00 AM" }
 ];
 
 /**
@@ -59,6 +59,7 @@ export default function App() {
                         <a href="/" className="text-sm font-black text-gray-400 hover:text-black transition-colors uppercase italic no-underline">Dashboard</a>
                         <a href="/ssg" className="text-sm font-black text-blue-600 border-b-2 border-blue-600 uppercase italic no-underline">SSG View</a>
                         <a href="/ssr" className="text-sm font-black text-gray-400 hover:text-black transition-colors uppercase italic no-underline">SSR View</a>
+                        <a href="/isr" className="text-sm font-black text-gray-400 hover:text-black transition-colors uppercase italic no-underline">isr View</a>
                     </div>
 
                     <button className="p-2 bg-black text-white rounded shadow-[4px_4px_0px_0px_rgba(37,99,235,1)]">
@@ -113,7 +114,7 @@ export default function App() {
                     <div className="lg:col-span-7">
                         <div className="bg-[#FFFDF5] border-4 border-black p-8 md:p-16 rotate-1 shadow-2xl relative text-black">
                             <div className="border-b-4 border-black pb-8 mb-8 flex justify-between items-end">
-                                <p className="font-mono text-[10px] font-black uppercase tracking-widest">VOL. 01 // RESEARCH ISSUE // $0.00</p>
+                                <p className="font-mono text-[10px] font-black uppercase tracking-widest">VOL. 01 // RESEARCH ISSUE // €0.00</p>
                                 <h2 className="text-4xl font-black tracking-tighter italic uppercase flex items-center gap-2">
                                     <BookOpen size={32} /> THE STATIC GAZETTE
                                 </h2>

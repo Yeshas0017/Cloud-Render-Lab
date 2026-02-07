@@ -85,7 +85,6 @@ export default function RenderingLabHub() {
       </nav>
 
       <header className="mb-20 text-black">
-        <p className="font-black uppercase tracking-widest text-[10px] mb-2 text-blue-600">RESEARCH PHASE 01: CORE INFRASTRUCTURE</p>
         <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.85] uppercase italic text-black">
           SYSTEM<br />METRICS
         </h1>

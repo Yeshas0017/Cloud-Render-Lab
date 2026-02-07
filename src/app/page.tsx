@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Zap,
   Clock,
@@ -10,13 +10,16 @@ import {
   Cpu,
   Globe,
   Search,
-  ArrowUpRight,
-  TrendingDown
+  TrendingDown,
+  Sparkles,
+  Terminal,
+  BrainCircuit,
+  Timer
 } from 'lucide-react';
 
 /**
  * STRATEGY METRIC CARD
- * Standard anchor tags used for preview compatibility.
+ * Uses standard anchor tags for preview environment compatibility.
  */
 const MetricCard = ({ title, mode, lcp, ttfb, percentage, color, href }: {
   title: string;
@@ -63,9 +66,32 @@ const MetricCard = ({ title, mode, lcp, ttfb, percentage, color, href }: {
 );
 
 export default function RenderingLabHub() {
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [summary, setSummary] = useState<string | null>(null);
+  const [analysisMetrics, setAnalysisMetrics] = useState<{ duration: number } | null>(null);
+
+  const handleGenerateSummary = async () => {
+    setIsAnalyzing(true);
+    setSummary(null);
+    const start = performance.now();
+
+    try {
+      const response = await fetch('/api/summarize', {
+        method: 'POST',
+      });
+      const data = await response.json();
+      setSummary(data.summary);
+      setAnalysisMetrics({ duration: Math.round(performance.now() - start) });
+    } catch (error) {
+      console.error("AI Analysis failed:", error);
+      setSummary("Error: Unable to reach Gemini API. Please check your .env.local file.");
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-black font-sans p-6 md:p-12 selection:bg-yellow-300">
-      {/* Navigation Header */}
       <nav className="flex justify-between items-center mb-16 border-b-4 border-black pb-6 text-black">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-black text-white flex items-center justify-center font-black rounded italic">RL</div>
@@ -85,55 +111,47 @@ export default function RenderingLabHub() {
       </nav>
 
       <header className="mb-20 text-black">
+        <p className="font-black uppercase tracking-widest text-[10px] mb-2 text-blue-600"></p>
         <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.85] uppercase italic text-black">
           SYSTEM<br />METRICS
         </h1>
       </header>
 
-      <main className="max-w-7xl mx-auto">
+      <main className="max-w-7xl mx-auto space-y-16">
         {/* Main Benchmarking Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <MetricCard
-            title="STATIC GENERATION" mode="SSG" lcp="0.8" ttfb="120" percentage={92} color="#2563eb" href="/ssg"
-          />
-          <MetricCard
-            title="SERVER RENDER" mode="SSR" lcp="1.5" ttfb="450" percentage={65} color="#ea580c" href="/ssr"
-          />
-          <MetricCard
-            title="REVALIDATION" mode="ISR" lcp="1.1" ttfb="280" percentage={82} color="#10b981" href="/isr"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <MetricCard title="STATIC GENERATION" mode="SSG" lcp="0.8" ttfb="120" percentage={92} color="#2563eb" href="/ssg" />
+          <MetricCard title="SERVER RENDER" mode="SSR" lcp="1.5" ttfb="450" percentage={65} color="#ea580c" href="/ssr" />
+          <MetricCard title="REVALIDATION" mode="ISR" lcp="1.1" ttfb="280" percentage={82} color="#10b981" href="/isr" />
         </div>
 
-        {/* NEW: Simple Performance Distribution Graph */}
-        <section className="mb-16 border-4 border-black p-8 bg-gray-50 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        {/* Latency Distribution Graph */}
+        <section className="border-4 border-black p-8 bg-gray-50 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
             <div>
               <h2 className="text-3xl font-black italic uppercase tracking-tighter">LATENCY DISTRIBUTION</h2>
               <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Cross-Strategy Performance Gap (Target Metrics)</p>
             </div>
             <div className="flex gap-4">
-              <div className="flex items-center gap-2"><div className="w-3 h-3 bg-blue-600" /> <span className="text-[10px] font-bold uppercase">SSG</span></div>
-              <div className="flex items-center gap-2"><div className="w-3 h-3 bg-orange-600" /> <span className="text-[10px] font-bold uppercase">SSR</span></div>
-              <div className="flex items-center gap-2"><div className="w-3 h-3 bg-emerald-500" /> <span className="text-[10px] font-bold uppercase">ISR</span></div>
+              <div className="flex items-center gap-2 text-black"><div className="w-3 h-3 bg-blue-600" /> <span className="text-[10px] font-bold uppercase">SSG</span></div>
+              <div className="flex items-center gap-2 text-black"><div className="w-3 h-3 bg-orange-600" /> <span className="text-[10px] font-bold uppercase">SSR</span></div>
+              <div className="flex items-center gap-2 text-black"><div className="w-3 h-3 bg-emerald-500" /> <span className="text-[10px] font-bold uppercase">ISR</span></div>
             </div>
           </div>
 
           <div className="h-64 flex items-end gap-6 md:gap-12 px-4 border-b-4 border-black">
-            {/* SSG BAR */}
             <div className="flex-1 flex flex-col items-center gap-2 group">
               <div className="w-full bg-blue-600 border-x-4 border-t-4 border-black h-[20%] group-hover:h-[25%] transition-all duration-500 relative">
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 font-black italic text-xs">120ms</span>
               </div>
               <span className="font-black text-[10px] uppercase opacity-40">TTFB</span>
             </div>
-            {/* SSR BAR */}
             <div className="flex-1 flex flex-col items-center gap-2 group">
               <div className="w-full bg-orange-600 border-x-4 border-t-4 border-black h-[85%] group-hover:h-[90%] transition-all duration-500 relative">
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 font-black italic text-xs">450ms</span>
               </div>
               <span className="font-black text-[10px] uppercase opacity-40">TTFB</span>
             </div>
-            {/* ISR BAR */}
             <div className="flex-1 flex flex-col items-center gap-2 group">
               <div className="w-full bg-emerald-500 border-x-4 border-t-4 border-black h-[55%] group-hover:h-[60%] transition-all duration-500 relative">
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 font-black italic text-xs">280ms</span>
@@ -144,6 +162,77 @@ export default function RenderingLabHub() {
           <div className="mt-6 flex items-center gap-2 text-orange-600">
             <TrendingDown size={16} />
             <p className="text-[10px] font-black uppercase tracking-tight">Note: Higher TTFB in SSR variant is due to dynamic hydration and server logic execution time.</p>
+          </div>
+        </section>
+
+        {/* AI Research Assistant Section */}
+        <section className="bg-slate-950 text-white rounded-[2rem] p-10 shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/10 to-transparent pointer-events-none" />
+
+          <div className="flex flex-col lg:flex-row gap-12 items-start relative z-10">
+            <div className="lg:w-1/3">
+              <div className="flex items-center gap-3 text-blue-400 mb-4">
+                <BrainCircuit size={32} />
+                <h2 className="text-3xl font-black italic tracking-tighter uppercase">AI Research Assistant</h2>
+              </div>
+              <p className="text-gray-400 text-sm font-bold uppercase leading-relaxed mb-8">
+                Use  Flash to take a look at the current infrastructure data and create a summary of its performance.
+              </p>
+
+              <button
+                onClick={handleGenerateSummary}
+                disabled={isAnalyzing}
+                className="w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-black py-6 rounded-2xl transition-all shadow-[0px_8px_0px_0px_rgba(30,58,138,1)] active:translate-y-1 active:shadow-none uppercase italic tracking-widest"
+              >
+                {isAnalyzing ? (
+                  <RefreshCcw className="animate-spin" />
+                ) : (
+                  <Sparkles size={20} />
+                )}
+                {isAnalyzing ? "Processing AI Logic..." : "Generate Research Summary"}
+              </button>
+            </div>
+
+            <div className="lg:w-2/3 w-full bg-white/5 border border-white/10 rounded-3xl p-8 min-h-[300px] flex flex-col">
+              <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 flex items-center gap-2">
+                  <Terminal size={12} /> Execution_Output
+                </span>
+              </div>
+
+              <div className="flex-grow font-mono text-sm leading-relaxed text-blue-100">
+                {isAnalyzing ? (
+                  <div className="space-y-2 animate-pulse">
+                    <p className="">{`> Accessing Gemini 2.5 Flash API...`}</p>
+                    <p className="">{`> Payload: 20 products from src/lib/data.ts`}</p>
+                    <p className="">{`> Performing background compute...`}</p>
+                  </div>
+                ) : summary ? (
+                  <div className="space-y-4 animate-in fade-in duration-700">
+                    <p className="text-white italic">{summary}</p>
+                    {analysisMetrics && (
+                      <div className="flex items-center gap-4 mt-6 pt-4 border-t border-white/10">
+                        <div className="flex items-center gap-2 text-green-400">
+                          <Timer size={16} />
+                          <span className="text-[10px] font-black uppercase">Round Trip: {analysisMetrics.duration}ms</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-blue-400">
+                          <Activity size={16} />
+                          <span className="text-[10px] font-black uppercase">Model: Gemini-2.5-Flash</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <p className="opacity-30 italic text-center py-12">Click the button above to start the AI performance analysis...</p>
+                )}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -158,7 +247,7 @@ export default function RenderingLabHub() {
               <p className="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase text-white">Global Compute Nodes Active</p>
             </div>
           </div>
-          <div className="text-right">
+          <div className="text-right text-white">
             <p className="text-[10px] font-black uppercase text-gray-500 mb-1">Infrastructure</p>
             <p className="font-bold italic uppercase tracking-widest text-white italic">Cloud Run (GCP)</p>
           </div>
@@ -166,14 +255,11 @@ export default function RenderingLabHub() {
       </main>
 
       <footer className="mt-32 pt-8 border-t-4 border-black flex flex-col md:flex-row justify-between items-center gap-6 grayscale opacity-50 text-black">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-black">
           <Cpu size={20} />
           <p className="text-[10px] font-black uppercase tracking-[0.3em]">M.Sc. Applied Computer Science // Render Lab Hub</p>
         </div>
-        <div className="flex gap-4">
-          <span className="text-[10px] font-black uppercase tracking-widest border-2 border-black px-2 py-0.5">V2.0 STABLE</span>
-          <p className="text-[10px] font-black uppercase tracking-[0.3em]">© 2026 NextBench Research</p>
-        </div>
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black">© 2026 NextBench Research Project</p>
       </footer>
     </div>
   );

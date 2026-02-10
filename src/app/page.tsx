@@ -176,7 +176,7 @@ export default function RenderingLabHub() {
                 <h2 className="text-3xl font-black italic tracking-tighter uppercase">AI Research Assistant</h2>
               </div>
               <p className="text-gray-400 text-sm font-bold uppercase leading-relaxed mb-8">
-                Use  Flash to take a look at the current infrastructure data and create a summary of its performance.
+                Use Flash to take a look at the current infrastructure data and create a summary of its performance.
               </p>
 
               <button

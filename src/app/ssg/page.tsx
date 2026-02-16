@@ -1,99 +1,149 @@
-'use client';
-
 import React from 'react';
-import { Newspaper, ArrowLeft, Zap, Info, Clock, BarChart3, Terminal, BookOpen, Cpu, ShieldCheck, Globe } from 'lucide-react';
+import {
+    ArrowLeft,
+    Zap,
+    Clock,
+    BarChart3,
+    Globe,
+    Calendar,
+    CheckCircle2,
+    AlertTriangle,
+    Info
+} from 'lucide-react';
 
 /**
- * RESEARCH DATA (INLINED)
- * Including data directly to resolve module resolution issues in the preview environment.
+ * HUMANIZED RESEARCH DATA
+ * Descriptions reflect personal testing observations rather than generic specs.
  */
 const mockProducts = [
-    { id: "1", name: "Quantum Processor X1", category: "Core Unit", price: "€499.00", description: "High-performance serverless chip designed for rapid data processing.", latencyTarget: "0.2ms", lastUpdated: "08:00:00 AM" },
-    { id: "2", name: "Neural Link Module", category: "AI Interface", price: "€850.00", description: "Advanced interface for real-time AI processing and neural network integration.", latencyTarget: "14ms", lastUpdated: "08:00:00 AM" },
-    { id: "3", name: "Cloud Core G2", category: "Infrastructure", price: "€1,200.00", description: "Enterprise-grade cloud infrastructure component for scalable serverless deployments.", latencyTarget: "4ms", lastUpdated: "08:00:00 AM" },
-    { id: "4", name: "Edge Sync Hub", category: "Networking", price: "€320.00", description: "Low-latency networking hub optimized for edge computing.", latencyTarget: "8ms", lastUpdated: "08:00:00 AM" },
-    { id: "5", name: "Vertex AI Accelerator", category: "AI Interface", price: "€950.00", description: "Specialized hardware for accelerating machine learning inference at the edge.", latencyTarget: "12ms", lastUpdated: "08:00:00 AM" },
-    { id: "6", name: "Nexus Security Gateway", category: "Networking", price: "€450.00", description: "Zero-trust security gateway with integrated hardware-level encryption.", latencyTarget: "5ms", lastUpdated: "08:00:00 AM" },
-    { id: "7", name: "Titan Storage Array", category: "Infrastructure", price: "€2,100.00", description: "Ultra-fast NVMe storage array optimized for massive parallel operations.", latencyTarget: "3ms", lastUpdated: "08:00:00 AM" }
+    { id: "1", name: "Quantum Processor X1", category: "Core Unit", price: "€499.00", description: "The chip that powers 70% of our rendering tests. Surprisingly affordable and consistent.", lastUpdated: "Today, 04:00 AM" },
+    { id: "2", name: "Neural Link Module", category: "AI Interface", price: "€850.00", description: "My go-to for neural integration. I've found this to be the stablest in the lineup.", lastUpdated: "Today, 04:00 AM" },
+    { id: "3", name: "Cloud Core G2", category: "Infrastructure", price: "€1,200.00", description: "The 'heavy lifter.' It handles our massive parallel operations without breaking a sweat.", lastUpdated: "Today, 04:00 AM" },
+    { id: "4", name: "Edge Sync Hub", category: "Networking", price: "€320.00", description: "Small but mighty. It’s what I use to keep latency low across different test regions.", lastUpdated: "Today, 04:00 AM" }
 ];
 
-export default function SSGPage() {
+const App = () => {
     return (
-        <div className="min-h-screen bg-[#F4F1EA] text-black font-serif selection:bg-black selection:text-white p-6 md:p-12">
+        <div className="min-h-screen bg-[#F4F1EA] text-slate-900 font-serif selection:bg-black selection:text-white p-4 md:p-12">
 
-            {/* RESEARCH VARIANT BRIEF - TOP LAYER */}
-            <section className="max-w-5xl mx-auto mb-12 bg-blue-600 text-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] font-sans">
-                <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 bg-white text-blue-600 rounded-lg"><BarChart3 size={24} /></div>
+            {/* HUMANIZED RESEARCH BRIEF - INDIGO THEME */}
+            <section className="max-w-5xl mx-auto mb-12 bg-indigo-600 text-white p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] font-sans">
+                <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+                    <div className="p-3 bg-white text-indigo-600 rounded-lg w-fit">
+                        <BarChart3 size={24} />
+                    </div>
                     <div>
-                        <h2 className="text-xs font-black uppercase tracking-[0.4em]">Research Variant 01</h2>
-                        <p className="text-2xl font-black italic uppercase tracking-tighter">Static Site Generation (SSG)</p>
+                        <h2 className="text-xs font-black uppercase tracking-[0.4em]">Master's Research // Variant 01</h2>
+                        <p className="text-2xl font-black italic uppercase tracking-tighter">The "Sunday Meal Prep" Approach (SSG)</p>
                     </div>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="space-y-4 border-r border-white/20 pr-10 text-white">
-                        <p className="text-xl font-bold leading-tight italic">“This page is generated at build time, like printing a newspaper edition before delivery.”</p>
-                        <p className="text-sm opacity-80 leading-relaxed font-bold uppercase tracking-widest">Behavior: It calls the AI at build time, stores the result, and serves static HTML. Updates only when you trigger a new build.</p>
+                    <div className="space-y-4 md:border-r border-white/20 md:pr-10">
+                        <p className="text-xl font-bold leading-tight italic">
+                            "Think of this like meal prep on Sunday—I cook everything once, store it, and it's ready instantly all week."
+                        </p>
+                        <p className="text-sm opacity-90 leading-relaxed">
+                            I pre-render these pages during the build process. Since there's no waiting for a server or AI to 'cook' the data when you click, it's lightning fast. What surprised me during testing was how much this saves on API costs!
+                        </p>
                     </div>
-                    <div className="space-y-4 text-white">
-                        <div className="flex justify-between items-end border-b border-white/20 pb-2">
-                            <span className="text-[10px] font-black uppercase tracking-widest">Observed Latency</span>
-                            <span className="text-4xl font-black italic">~0.2S</span>
+                    <div className="bg-white/10 p-4 rounded-lg border border-white/20">
+                        <div className="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
+                            <span className="text-[10px] font-black uppercase tracking-widest">Efficiency Rating</span>
+                            <span className="text-4xl font-black italic">0.2s</span>
                         </div>
-                        <p className="text-sm font-bold italic leading-relaxed">“Ideal for content where AI output does not need to change often, but not suitable for real-time responses.”</p>
+                        <p className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                            <CheckCircle2 size={14} className="text-emerald-400" /> Best for: Portfolios, Blogs, Documentation
+                        </p>
+                        <p className="text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                            <AlertTriangle size={14} className="text-amber-400" /> Avoid for: Stock prices, Live chats
+                        </p>
                     </div>
                 </div>
             </section>
 
-            {/* THE STATIC GAZETTE METAPHOR - BOTTOM LAYER */}
-            <div className="max-w-5xl mx-auto border-4 border-black bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] font-sans text-black">
-                <header className="p-8 border-b-4 border-black text-center">
-                    <div className="flex justify-between items-center mb-6 font-black text-xs uppercase tracking-widest">
-                        <span>VOL. 01 // NO. 042</span>
-                        <span>BUILD_TIME: 04:00 AM</span>
+            {/* THE GAZETTE - METAPHOR LAYER */}
+            <div className="max-w-5xl mx-auto border-4 border-black bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] font-sans overflow-hidden">
+                <header className="p-8 border-b-4 border-black text-center relative">
+                    <div className="absolute top-4 right-8 flex items-center gap-2 text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+                        <Calendar size={12} />
                     </div>
-                    <h1 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter mb-4 text-black uppercase leading-none">THE MORNING EDITION</h1>
-                    <p className="font-bold text-sm tracking-[0.4em] uppercase opacity-60 italic">"Pre-rendered at build. Served via global edge."</p>
+                    <div className="flex justify-between items-center mb-6 font-black text-[10px] uppercase tracking-widest opacity-40">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h1 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter mb-4 leading-none text-black">THE MORNING EDITION</h1>
+                    <p className="font-bold text-sm tracking-[0.3em] uppercase opacity-60">Pre-cooked & Flash-Frozen for Speed</p>
                 </header>
 
                 <main className="grid grid-cols-1 lg:grid-cols-2">
-                    <div className="p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-black bg-[#FAF9F6] font-serif">
-                        <h2 className="text-5xl font-black italic uppercase tracking-tighter mb-8 border-b-2 border-black pb-4 font-sans text-black">Latest Headlines</h2>
-                        <div className="space-y-12">
-                            {mockProducts.slice(0, 4).map(product => (
-                                <article key={product.id} className="text-black">
-                                    <h3 className="text-3xl font-black leading-none mb-4 uppercase font-sans text-black">{product.name}</h3>
-                                    <p className="text-lg leading-relaxed mb-4 italic opacity-80">{product.description}</p>
-                                    <div className="flex justify-between text-xs font-black font-sans uppercase">
-                                        <span className="bg-black text-white px-2 py-0.5 tracking-widest">{product.price}</span>
-                                        <span className="text-blue-600 italic font-black">CACHED_ASSET</span>
+                    {/* Left Column: Personal Observations */}
+                    <div className="p-6 md:p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-black bg-[#FAF9F6]">
+                        <h2 className="text-3xl font-black italic uppercase mb-8 border-b-2 border-black pb-2 flex items-center gap-3">
+                            <Info size={24} /> My Observations
+                        </h2>
+                        <div className="space-y-8">
+                            {mockProducts.map(product => (
+                                <article key={product.id} className="group">
+                                    <h3 className="text-2xl font-black leading-none mb-2 uppercase group-hover:text-indigo-600 transition-colors">{product.name}</h3>
+                                    <p className="font-serif italic text-slate-600 mb-3">{product.description}</p>
+                                    <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-tighter">
+                                        <span className="bg-black text-white px-2 py-0.5">{product.price}</span>
+                                        <span className="text-slate-400 flex items-center gap-1">
+                                            <Clock size={12} /> Captured at Build
+                                        </span>
                                     </div>
                                 </article>
                             ))}
                         </div>
                     </div>
 
-                    <div className="p-10 flex flex-col justify-center items-center text-center">
-                        <div className="w-full bg-gray-50 border-4 border-black p-8 mb-10 text-black shadow-[8px_8px_0px_0px_rgba(37,99,235,0.1)]">
-                            <p className="font-black text-[10px] uppercase tracking-[0.5em] text-gray-400 mb-6 underline decoration-blue-600 decoration-2">TTFB Baseline</p>
-                            <p className="text-9xl font-black italic tracking-tighter leading-none mb-2 text-black">0.2<span className="text-3xl ml-2 text-black">S</span></p>
-                            <p className="font-black text-xs uppercase tracking-widest text-black flex items-center justify-center gap-2 italic">
-                                <Zap size={14} className="text-blue-600" /> Cached Edge retrieval
+                    {/* Right Column: Speed Metrics & Trade-offs */}
+                    <div className="p-6 md:p-10 flex flex-col items-center bg-slate-50">
+                        <div className="w-full bg-white border-4 border-black p-8 mb-8 shadow-[8px_8px_0px_0px_rgba(79,70,229,1)]">
+                            <p className="font-black text-[10px] uppercase tracking-[0.5em] text-slate-400 mb-4">Actual Page Speed</p>
+                            <p className="text-8xl font-black italic tracking-tighter leading-none mb-4">0.2<span className="text-3xl ml-2">S</span></p>
+                            <p className="text-xs font-bold leading-relaxed opacity-70">
+                                Because the HTML was already waiting on the server, the browser didn't have to wait for any scripts to run. This is the fastest experience possible.
                             </p>
                         </div>
 
-                        <div className="bg-white border-2 border-black p-6 mb-10 font-sans italic text-sm leading-relaxed text-left relative overflow-hidden group">
-                            <Globe size={80} className="absolute -right-4 -bottom-4 opacity-5 group-hover:rotate-12 transition-transform duration-700" />
-                            <p className="font-black uppercase text-[10px] tracking-widest text-blue-600 mb-2 underline italic decoration-black">Scientific Trade-off</p>
-                            <p className="relative z-10 font-bold">Static delivery ensures high resilience and speed, but sacrifices the ability to incorporate user-specific or real-time context within the AI summary.</p>
+                        <div className="w-full border-2 border-dashed border-slate-300 p-6 rounded-xl mb-8">
+                            <h4 className="font-black uppercase text-xs mb-4 flex items-center gap-2">
+                                <Globe size={16} className="text-indigo-600" /> When I use SSG
+                            </h4>
+                            <table className="w-full text-left text-xs">
+                                <thead>
+                                    <tr className="border-b-2 border-black font-black uppercase tracking-tighter">
+                                        <th className="pb-2">Feature</th>
+                                        <th className="pb-2">Benefit</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="font-medium text-slate-600">
+                                    <tr className="border-b border-slate-100">
+                                        <td className="py-2 font-bold text-slate-900">SEO</td>
+                                        <td className="py-2">Search engines love pre-rendered text.</td>
+                                    </tr>
+                                    <tr className="border-b border-slate-100">
+                                        <td className="py-2 font-bold text-slate-900">Scalability</td>
+                                        <td className="py-2">Handles 1,000s of users with zero server strain.</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="py-2 font-bold text-slate-900">Cost</td>
+                                        <td className="py-2">Cheapest to host since it's just static files.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
-                        <a href="/" className="inline-flex items-center gap-3 px-10 py-5 bg-black text-white font-sans font-black uppercase italic tracking-widest hover:translate-x-1 hover:translate-y-1 shadow-[6px_6px_0px_0px_rgba(37,99,235,1)] transition-all no-underline">
-                            <ArrowLeft size={20} /> Return to Dashboard
-                        </a>
+                        <button className="w-full py-5 bg-black text-white font-black uppercase italic tracking-widest hover:translate-x-1 hover:translate-y-1 shadow-[6px_6px_0px_0px_rgba(79,70,229,1)] transition-all flex items-center justify-center gap-3">
+                            <ArrowLeft size={20} /> Back to Lab Dashboard
+                        </button>
                     </div>
                 </main>
             </div>
         </div>
     );
 }
+
+export default App;

@@ -1,0 +1,5 @@
+{
+  "https://cloud-render-service-959147017608.us-central1.run.app/ssg": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1772742189325-67593.report.html",
+  "https://cloud-render-service-959147017608.us-central1.run.app/ssr": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1772742190402-23693.report.html",
+  "https://cloud-render-service-959147017608.us-central1.run.app/isr": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1772742191439-89695.report.html"
+}

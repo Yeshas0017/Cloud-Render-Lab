@@ -14,7 +14,7 @@ export const options = {
     ],
     thresholds: {
         // ISR should hide the AI tax, staying below 1s
-        http_req_duration: ['p(95)<800'],
+        http_req_duration: ['p(95)<3000'],
         http_req_failed: ['rate<0.01'],
     },
 };

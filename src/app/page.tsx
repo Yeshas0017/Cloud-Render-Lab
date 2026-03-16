@@ -66,6 +66,12 @@ export default function RenderingLabHub() {
 
           {/* Top Right Navigation Links */}
           <nav className="flex gap-3">
+            <a
+              href="/research-hub"
+              className="bg-blue-600 border-2 border-black px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-white transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 no-underline mr-4"
+            >
+              Analysis Hub
+            </a>
             {[
               { label: 'SSG', href: '/ssg', color: '#2563eb' },
               { label: 'SSR', href: '/ssr', color: '#ea580c' },
@@ -75,7 +81,6 @@ export default function RenderingLabHub() {
                 key={link.label}
                 href={link.href}
                 className="bg-white border-2 border-black px-4 py-1.5 text-[10px] font-black uppercase tracking-widest hover:text-white transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none no-underline text-black"
-                style={{ '--hover-bg': link.color } as any}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = link.color}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
               >
@@ -104,10 +109,10 @@ export default function RenderingLabHub() {
         {/* Human Context Section */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 border-4 border-black p-10 bg-slate-50 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-8 flex items-center gap-4 text-black">
+            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-8 flex items-center gap-4 text-black text-left">
               <BookOpen className="text-blue-600" /> Researcher's Perspective
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-black">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-black text-left">
               <div className="space-y-6">
                 <div className="bg-white p-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                   <h4 className="font-black text-xs uppercase text-blue-600 mb-2 tracking-widest flex items-center gap-2"><Lightbulb size={14} /> Biggest Surprise</h4>
@@ -119,19 +124,19 @@ export default function RenderingLabHub() {
                 </div>
               </div>
               <div className="bg-black text-white p-8 font-mono text-sm leading-relaxed flex flex-col justify-between border-t-8 border-emerald-500">
-                <div>
+                <div className="text-left">
                   <p className="mb-6 text-emerald-400 font-black tracking-widest uppercase flex items-center gap-2"><Terminal size={16} /> YESHAS_LOG_V3.txt</p>
                   <p className="text-lg font-bold italic leading-relaxed">"Day 1: I thought SSG was always best. Day 30: After 50+ deployments, I realized that ISR (the Buffet) is the true hero of the AI era."</p>
                 </div>
-                <p className="mt-8 pt-4 border-t border-white/20 opacity-40 text-[10px] uppercase font-black tracking-widest">Infra: GCP Cloud Run</p>
+                <p className="mt-8 pt-4 border-t border-white/20 opacity-40 text-[10px] uppercase font-black tracking-widest text-left">Infra: GCP Cloud Run</p>
               </div>
             </div>
           </div>
-          <div className="bg-blue-600 text-white p-8 border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-center">
+          <div className="bg-blue-600 text-white p-8 border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-center text-left">
             <h3 className="text-3xl font-black italic uppercase mb-8">The Tech Stack</h3>
             <div className="space-y-6">
               {[{ l: "Infrastructure", v: "Google Cloud Run", i: Globe }, { l: "Intelligence", v: "Gemini 2.5 Flash", i: BrainCircuit }, { l: "Framework", v: "Next.js 15 (App Router)", i: Cpu }, { l: "Benchmarking", v: "Lighthouse CI / k6", i: BarChart3 }].map((item, i) => (
-                <div key={i} className="border-l-4 border-white/30 pl-4">
+                <div key={i} className="border-l-4 border-white/30 pl-4 text-left">
                   <p className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">{item.l}</p>
                   <p className="font-bold flex items-center gap-2 uppercase italic text-sm text-white"><item.i size={14} /> {item.v}</p>
                 </div>
@@ -140,43 +145,9 @@ export default function RenderingLabHub() {
           </div>
         </section>
 
-        {/* Latency Distribution Graph */}
-        <section className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] text-black">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
-            <div>
-              <h2 className="text-4xl font-black italic uppercase tracking-tighter">LATENCY DISTRIBUTION</h2>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Cross-Strategy Performance Gap (Target Metrics)</p>
-            </div>
-          </div>
-
-          <div className="h-80 flex items-end gap-12 px-8 border-b-4 border-black relative">
-            <div className="flex-1 flex flex-col items-center gap-4 group">
-              <div className="w-full bg-blue-600 border-x-4 border-t-4 border-black h-[15%] group-hover:h-[20%] transition-all duration-700 relative shadow-[4px_-4px_0px_0px_rgba(0,0,0,0.1)]">
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 font-black italic text-sm">120ms</span>
-              </div>
-              <span className="font-black text-[10px] uppercase text-slate-400 tracking-widest">MEAL PREP</span>
-            </div>
-            <div className="flex-1 flex flex-col items-center gap-4 group">
-              <div className="w-full bg-orange-600 border-x-4 border-t-4 border-black h-[90%] group-hover:h-[95%] transition-all duration-700 relative shadow-[4px_-4px_0px_0px_rgba(0,0,0,0.1)]">
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 font-black italic text-sm">450ms</span>
-              </div>
-              <span className="font-black text-[10px] uppercase text-slate-400 tracking-widest">CHEF KITCHEN</span>
-            </div>
-            <div className="flex-1 flex flex-col items-center gap-4 group">
-              <div className="w-full bg-emerald-500 border-x-4 border-t-4 border-black h-[45%] group-hover:h-[50%] transition-all duration-700 relative shadow-[4px_-4px_0px_0px_rgba(0,0,0,0.1)]">
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 font-black italic text-sm">280ms</span>
-              </div>
-              <span className="font-black text-[10px] uppercase text-slate-400 tracking-widest">THE BUFFET</span>
-            </div>
-          </div>
-          <div className="mt-8 flex items-center gap-3 text-orange-600 font-black italic text-xs uppercase tracking-tight">
-            <TrendingDown size={18} /> Note: The 4.2s gap is my measured 'AI TAX' during server-side computation.
-          </div>
-        </section>
-
         {/* AI Research Assistant Section */}
         <section className="bg-slate-950 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden group">
-          <div className="flex flex-col lg:flex-row gap-16 items-start relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 items-start relative z-10 text-left">
             <div className="lg:w-1/3">
               <div className="flex items-center gap-4 text-blue-400 mb-6">
                 <BrainCircuit size={48} className="animate-pulse" />
@@ -206,9 +177,9 @@ export default function RenderingLabHub() {
       <footer className="mt-40 pt-12 border-t-4 border-black flex flex-col md:flex-row justify-between items-center gap-8 grayscale opacity-40 font-black text-[10px] uppercase tracking-[0.4em] text-black">
         <div className="flex items-center gap-4">
           <Cpu size={24} />
-          <div>
+          <div className="text-left">
             <p>M.Sc. APPLIED COMPUTER SCIENCE // RESEARCH HUB</p>
-            <p className="text-blue-600">INFRASTRUCTURE: GOOGLE CLOUD RUN</p>
+            <p className="text-blue-600 text-left">INFRASTRUCTURE: GOOGLE CLOUD RUN</p>
           </div>
         </div>
         <p>© 2026 YESHAS RESEARCH LAB // BENCHMARKING_PHASE_2.2</p>
